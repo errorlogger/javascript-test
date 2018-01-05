@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js-data/regions.js"></script>
+    <script src="js-data/departements.js"></script>
+</head>
+
+<body>
+    <select name="select" id="select">
+
+    </select>
+    <ul id='liste'></ul>
+
+
+    <script>
+        var liste = document.getElementById("liste");
+        var select = document.querySelector("select");
+        console.log(regions[1].region);
+
+        select.addEventListener('change', ouvrirListDepartement)
+        var mapCode = new Map();
+
+        for (let i = 0; i < regions.length; i++) {
+            item = document.createElement('option');
+            item.textContent = regions[i].region;
+            mapCode.set(regions[i].region,regions[i].codeRegion);
+            select.appendChild(item)
+        }
+
+
+        function ouvrirListDepartement(event) {
+            var regionSelected = select.value;
+            var codeR = mapCode.get(regionSelected);
+        
+            var shadowListe = document.createElement("ul");
+            shadowListe.setAttribute("id", "liste");
+
+            for (let i = 0; i < departements.length; i++) {
+                
+                if (codeR === departements[i].codeRegion) {
+                    //codeR = regions[i].codeRegion
+                    let departementsSelect = document.createElement("LI");
+                    departementsSelect.textContent = departements[i].departement
+                    shadowListe.appendChild(departementsSelect);
+
+                }
+            }
+            
+            liste.parentElement.replaceChild(shadowListe, liste);
+            liste = shadowListe;
+        }
+
+
+
+    </script>
+</body>
+
+</html>

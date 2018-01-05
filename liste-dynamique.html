@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+
+        li a{
+            cursor: pointer;
+            font-weight: bold:
+        }
+    </style>
+</head>
+<body>
+    
+    <ul>
+        <li>Item1</li>
+        <li>
+            <a>Item2</a>
+            <ul>
+                <li>
+                    <a>Item2.1</a>
+                    <ul>
+                        <li>Item 2.1.1</li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a>Item2.2</a>
+                    <ul>
+                        <li>Item 2.2.1</li>
+                        <li>Item 2.2.2</li>
+                        
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        //liste des liens dans le menu
+        var links = document.querySelectorAll('li a');
+        //gestionnaire de clic sur un lien
+        function menuHandler(){
+            console.log(event);
+            var targetElement = event.target.nextElementSibling;
+            targetElement.classList.toggle("hidden");
+        }
+
+        //Activation du gestionnaire sur l'événement clic
+        links.forEach((item)=>{
+            item.addEventListener("click",menuHandler)
+        })
+    </script>
+</body>
+</html>

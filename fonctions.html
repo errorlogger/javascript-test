@@ -1,0 +1,91 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <title>hello javascript</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script src="js-data/livres.js"></script>
+    <script>
+        /*var rendreMonnaie = (insert,prix)=>{
+            var monnaie =[];
+            var pieces = [50,20,10,5,2,1];
+            var insertCentime = insert*100;
+            prix *=100;
+            var monnaieRendue = insertCentime - prix;
+            
+            console.log(`doit être rendu : ${monnaieRendue/100}`);
+
+            for(let i=0; i<pieces.length; i++){
+                
+                var num = Math.floor(monnaieRendue/pieces[i]);
+                monnaie.push(num);
+                monnaieRendue =  monnaieRendue%pieces[i];
+                console.log(`-${num} pièce(s) de ${pieces[i]} cts`);
+            }
+            return monnaie;
+        }
+        var laMonnaie = rendreMonnaie(5,0.9);
+
+        console.log(laMonnaie);*/
+        var coffeMachine = (
+            ()=>{
+                var coins = [
+                    {label:"2 euros", value:200},
+                    {label:"1 euros", value:100},
+                    {label:"50 centimes", value:50},
+                    {label:"20 centimes", value:20},
+                    {label:"10 centimes", value:10},
+                    {label:"5 centimes", value:5},
+                    {label:"2 centimes", value:2}
+                ];
+
+                var getChange = (price, amountPaid)=>{
+                    //monnaie a rendre
+                    var change;
+                    //taille du tableau des pieces
+                    var coinsSize = coins.length;
+                    //pieces en cours
+                    var currentCoin;
+                    //tableau de la monnaie a rendre
+                    var returnedChange =[];
+
+                    //calcul de la monnaie a rendre
+
+                    if(amountPaid < price){
+                        change = amountPaid;
+                    }else{
+                        change = amountPaid - price;
+
+                        for (let i=0; i < coinsSize && change > 0; i++){
+                            currentCoin = coins[i];
+                            if (change>=currentCoin.value){
+                                returnedChange.push(
+                                    {
+                                        label: currentCoin.value,
+                                        qt:parseInt(change/currentCoin.value)
+                                    }
+                                    
+                                );
+                                change %=currentCoin.value;
+                            }
+                        }
+                        return returnedChange;
+                    }
+
+                    return {
+                        returnMyChange: getChange
+                    };
+                    
+
+                };
+            }
+        )();
+        console.log(coffeMachine.returnMyChange(65.200))
+    </script>
+
+</body>
+
+</html>

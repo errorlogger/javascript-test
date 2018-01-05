@@ -1,0 +1,56 @@
+<! DOCTYPE html>
+<html>
+
+<head>
+    <title>hello javascript</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script src="js-data/livres.js"></script>
+    <script>
+        for (let i = 0; i < books.length; i++) {
+            if ((books[i].tags.indexOf('Informatique') >= 0) || (books[i].tags.indexOf('informatique') >= 0)) {
+                books[i].price = parseFloat((books[i].price * 1.1).toFixed(2));
+            }
+            console.log(books[i]);
+        }
+
+        //livres d'economie
+
+        var ecoBooks = books.filter((book)=>{
+            return book.tags.indexOf('Economie')>=0;
+            //return books.tags.some(()=>{
+            //    return tag == 'Economie';
+            //});
+        });
+
+        var priceList = ecoBooks.map((book)=>{
+            return book.price;
+        });
+
+        var totalEco = priceList.reduce(
+            (total,price)=>{
+                return total + price
+            }
+        );
+        // version courte avec chainage
+
+        var sumEcoBooks = books.filter((book)=>{
+            return book.tags.indexOf('Economie')>=0;
+            //return books.tags.some(()=>{
+                //return tag == 'Economie';
+            //});
+        }).map((book)=>{
+            return book.price;
+        }).reduce(
+            (total,price)=>{
+                return total + price
+            }
+        );
+        console.log(sumEcoBooks);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Javascript</title>
+    <meta charset="utf-8">
+
+    <style>
+        #tip {
+            position: absolute;
+            width: 150px;
+            background-color: rgba(243, 243, 8, 0.301);
+            padding: 5px;
+            border-radius: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+        <h1 id="titre">Titre</h1>
+        <p id="texte">
+            lorem ipsum dolor sit amet
+        </p>
+
+    <button id="tipOn">Activer les bulles d'aides</button>
+    <button id="tipOff">Désactiver les bulles d'aides</button>
+    <button id="bt">Mon bouton</button>
+
+    <div id="tip">
+        Astuce pour faire du Javascript
+    </div>
+
+    
+
+    <script>
+        var tip = document.getElementById("tip");
+        var bt = document.getElementById("bt");
+        var btTipOn = document.getElementById("tipOn");
+        var btTipOff = document.getElementById("tipOff");
+        var titre = document.getElementById("titre");
+        var texte = document.getElementById("texte");
+
+        //Bascule sur l'affichage du texte au clic sur le titre
+        titre.addEventListener("click", ()=>{
+            texte.classList.toggle("hidden");
+        });
+
+        //Définition d'une fonction pour masquer la bulle d'aide
+        function hideTip(){
+            tip.style.display = "none";
+        }
+
+        var timer;
+        //Définition d'une fonction pour afficher la bulle d'aide
+        function showTip(event){
+            tip.style.display = "block";
+
+            //Positionnement de la bulle d'aide
+            //En fonction des coordonnées de la souris
+            tip.style.top = (event.pageY +10) + "px";
+            tip.style.left = (event.pageX +10) + "px";
+
+            if(timer){
+                clearTimeout(timer);
+            }
+            timer = setTimeout(hideTip, 2000);
+
+        }
+
+        btTipOff.onclick = ()=> {
+            bt.onmouseout = null;
+            bt.onmousemove = null;
+        }
+
+        btTipOn.onclick = ()=> {
+            bt.onmouseout = hideTip;
+            bt.onmousemove = showTip;
+        }
+
+        //Gestion des événements
+        //bt.onmouseover = showTip;
+        bt.onmouseout = hideTip;
+        bt.onmousemove = showTip;
+        
+        //Invocation de la fonction
+        hideTip();
+    </script>
+
+</body>
+
+</html>

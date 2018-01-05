@@ -1,0 +1,29 @@
+<! DOCTYPE html>
+<html>
+    <head>
+        <title>hello javascript</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+           /* var rayon = prompt('diametre du cercle:');
+            var circonference = 2*Math.PI*parseFloat(rayon);
+            //affiche la circonference d'un cercle dans une boite d'alert
+            var message = `circonference du cercle est de : ${circonference.toFixed(3)}`;
+            alert(message);*/
+
+            var fruits = ["poires","poires","poires","pommes", "oranges","poires","poires","oranges","pommes","oranges","oranges", "figues","poires","poires"];
+            for (var i = fruits.length; i>=0; i--){
+                
+                if(fruits.indexOf(fruits[i]) != fruits.lastIndexOf(fruits[i])){
+                   fruits.splice(fruits.indexOf(fruits[i]),1);
+                }
+              
+            }
+            alert(fruits);
+            console.log(fruits);
+            
+        </script>
+
+    </body>
+</html>

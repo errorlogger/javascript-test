@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Javascript</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script src="js-data/regions.js"></script>
+    <script src="js-data/departements.js"></script>
+
+    <select id="comboRegions"></select>
+
+    <select id="comboDepartement"></select>
+
+    <script>
+
+        var comboRegion = document.getElementById("comboRegions");
+        var comboDepartement = document.getElementById("comboDepartement");
+
+        function populateComboRegion(){
+            html = "<option value=''>Choisissez une région</option>";
+            for(let i=0; i < regions.length; i++){
+                html += "<option value=" + regions[i].codeRegion + ">" 
+                     + regions[i].region + "</option>"; 
+            }
+            comboRegion.innerHTML = html;
+        }
+
+        function populateComboDepartement(){
+            choosenCode = comboRegion.value;
+            html = "";
+
+            if(choosenCode != ""){
+                //Filtrage de la liste des départements
+                departements.forEach(element => {
+                    if(element.codeRegion == choosenCode){
+                        html += "<option>" + element.departement + "</option>";
+                    }
+                });
+                /*
+                for(let i = 0; i< departements.length; i++){
+                    if(departements[i].codeRegion == choosenCode){
+                        html += "<option>" + departements[i].departement + "</option>";
+                    }
+                }*/
+            }
+
+            comboDepartement.innerHTML = html;
+        }
+
+        //Mise à jour des départements au choix d'une région
+        comboRegion.addEventListener("change", populateComboDepartement);
+        populateComboRegion();
+
+    </script>
+
+</body>
+
+</html>

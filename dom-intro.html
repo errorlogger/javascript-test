@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Javascript</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <p>Avant le titre</p>
+    <h1 id="titre">Titre <span>texte supplémentaire</span></h1>
+
+    <ul>
+        <li>Mars</li>
+        <li>Pluton</li>
+        <li>Venus</li>
+        <li>prends moi l'anus</li>
+    </ul>
+
+    <script>
+        var h1 = document.getElementById("titre");
+        h1.innerHTML = "Hello <em>World</em>";
+
+        var pos = 0;
+        var list = document .querySelector("ul");
+        //list.parentNode.innerHTML += "<li>Saturne</li>";
+
+        list.onclick = (event)=>{
+            pos++;
+            
+            let colorTab = ["#ff0000","#458500","#0000ff","#00ff00","#b5d526","#26dcc9","#1245dc","#e51299",];
+            let c = pos%colorTab.length;
+            var targetElement = event.target;
+            targetElement.style.color = colorTab[c];
+            console.log(targetElement.textContent);
+        }
+
+
+        console.log(list);
+
+        
+    </script>
+
+</body>
+
+</html>

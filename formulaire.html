@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Javascript</title>
+    <meta charset="utf-8">
+    <style>
+        #formContainer{
+            width: 450px;
+            margin: 35px;
+            background-color: cyan;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid black;
+            position: relative;
+            z-index: 1;
+        }
+        .overlay{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0px;
+            top: 0px;
+            background-color: rgba(0,0,0,0.7);
+
+        }
+    </style>
+</head>
+
+<body>
+    <button id ="btShowForm">afficher le background</button>
+    <div class="overlay"></div>
+    <div id = 'formContainer'>
+        <form method="POST" id="valid">
+            <label>mot de passe</label>
+            <input type="password" id="pwd">
+            <label>confirmation</label>
+            <input type="password" id="pwdConfirm">
+            <button type="submit" id="val">Validation</button>
+        </form>
+    </div>
+
+
+
+    <script>
+
+        var formContainer = document.getElementById('formContainer');
+        var overlay = document.querySelector('.overlay');
+        var btShowForm = document.getElementById('btShowForm');
+
+        function showForm(){
+            overlay.style.display = "block";
+            formContainer.style.display = "block";
+            btShowForm.disable = "disable";
+        }
+
+        function hideForm(){
+            overlay.style.display = "none";
+            formContainer.style.display = "none";
+
+        }
+
+        btShowForm.onclick = showForm;
+        overlay.onclick = hideForm
+
+        var valid = document.getElementById('valid');
+        var bouton = document.getElementById('val');
+        var pwd = document.getElementById('pwd');
+        var pwdConfirm = document.getElementById('pwdConfirm');
+        valid.onsubmit = () => {
+
+            if (pwd.value === pwdConfirm.value) {
+                alert('validation OK');
+                bouton.style.backgroundColor = "blue";
+                return true;
+            }
+            alert('validation KO');
+            return false;
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <form method='GET' id='val'>
+            <labe>nouveau fruit</labe>
+            <input type="text" id="text">
+            <button type="submit" id="bt">AJOUTER</button>
+        </form>
+        <ul id="liste">
+            <li>pommes</li>
+            <li>poire</li>
+            <li>orange</li>
+        </ul>
+
+        <script>
+            var liste = document.getElementById('liste');
+            var text = document.getElementById('text');
+            var val = document.getElementById('val');
+
+           for(item of liste.children){
+                   addDeleteButton(item);
+
+                }  
+
+            function addDeleteButton(item){
+                var btDelete = document.createElement('button');
+                btDelete.textContent = "supprimer";
+                btDelete.addEventListener('click',deleteElement)
+                item.appendChild(btDelete);
+            }
+
+            function deleteElement(event){
+                var targetElement = event.path[1];
+                targetElement.remove();
+            }
+
+            function addFruit(event){
+
+                var inputValue = text.value.trim();
+                
+                if(inputValue !=""){
+                    let item = document.createElement('li');
+                    item.textContent = text.value;
+                    liste.appendChild(item);
+                    text.value = "";
+                }  
+                return false         
+             }
+
+            val.onsubmit = addFruit;
+        </script>
+
+    </body>
+
+    </html>
